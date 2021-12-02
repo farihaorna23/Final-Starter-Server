@@ -20,6 +20,12 @@ const Campus = db.define("campus", {
   
   description: {
     type: Sequelize.STRING,
+  },
+
+  id:{
+    type:Sequelize.INTEGER,
+    autoIncrement: true,
+    primaryKey:true
   }
 
 });

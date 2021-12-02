@@ -23,12 +23,23 @@ const Student = db.define("student", {
     defaultValue: ""
   },
 
+  campusname:{
+    type: Sequelize.STRING,
+    allowNull: false
+  },
+
   gpa: {
     type: Sequelize.DECIMAL,
     validate: {
       min:0.0,
       max:4.0
     }
+  },
+
+  id:{
+    type:Sequelize.INTEGER,
+    autoIncrement: true,
+    primaryKey:true
   }
 
 
