@@ -1,5 +1,6 @@
 const Sequelize = require('sequelize');
 const db = require('../db');
+const Campus=require('./Campus.js')
 
 const Student = db.define("student", {
 
@@ -23,10 +24,6 @@ const Student = db.define("student", {
     defaultValue: ""
   },
 
-  campusname:{
-    type: Sequelize.STRING,
-    allowNull: false
-  },
 
   gpa: {
     type: Sequelize.DECIMAL,
@@ -35,12 +32,6 @@ const Student = db.define("student", {
       max:4.0
     }
   },
-
-  id:{
-    type:Sequelize.INTEGER,
-    autoIncrement: true,
-    primaryKey:true
-  }
 
 
 });

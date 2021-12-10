@@ -37,11 +37,22 @@ router.get('/:id', ash(async(req, res) => {
 }));
 
 /** ADD NEW STUDENT */
-router.post('/', function(req, res, next) {
-  Student.create(req.body)
-    .then(createdStudent => res.status(200).json(createdStudent))
-    .catch(err => next(err));
-});
+router.post('/', ash(async(req, res, next) => {
+  const campusId= req.body.campusId
+  console.log("CampusId", campusId)
+  const studentCreate=req.body
+  delete studentCreate.campusId
+  try{
+    const campusToAssociate= await Campus.findOne({where:{id:campusId}})
+    console.log("Campus", campusToAssociate) 
+    const newStudent= await Student.create(studentCreate) 
+    await newStudent.setCampus(campusToAssociate)
+    res.status(201).json(newStudent)
+  }
+  catch(err){
+  res.status(400).json({message: "Invalid Information"})
+  }
+}));
 
 /** DELETE STUDENT */
 router.delete('/:id', function(req, res, next) {
