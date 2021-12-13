@@ -1,4 +1,5 @@
 //import database setup utils
+const cors= require('cors')
 const createDB = require('./database/utils/createDB');
 const seedDB = require('./database/utils/seedDB');
 
@@ -29,6 +30,7 @@ const configureApp = async () => {
   // handle request data
   app.use(express.json());
   app.use(express.urlencoded({ extended: false }));
+  app.use(cors())
 
   // Mount apiRouter
   app.use("/api", apiRouter);
