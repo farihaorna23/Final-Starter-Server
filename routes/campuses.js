@@ -19,6 +19,11 @@ router.get('/:id', ash(async(req, res) => {
 
 // Delete campus
 router.delete('/:id', ash(async(req, res) => {
+  const students= await Student.findAll({
+    where:{
+      campusId:req.params.id
+    }
+  })
   await Campus.destroy({
     where: {
       id: req.params.id

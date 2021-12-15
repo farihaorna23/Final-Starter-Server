@@ -24,7 +24,6 @@ const Student = db.define("student", {
     defaultValue: ""
   },
 
-
   gpa: {
     type: Sequelize.DECIMAL,
     validate: {

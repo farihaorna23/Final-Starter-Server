@@ -71,7 +71,9 @@ router.put('/:id', ash(async(req, res) => {
   await Student.update(req.body,
         { where: {id: req.params.id} }
   );
-  let student = await Student.findByPk(req.params.id);
+  let updatedCampus=await Campus.findByPk(req.body.campusId)
+  let student = await Student.findByPk(req.params.id, {include: [Campus]});
+  await student.setCampus(updatedCampus)
   res.status(201).json(student);
 }));
 
