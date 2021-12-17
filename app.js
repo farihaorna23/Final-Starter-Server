@@ -19,8 +19,8 @@ const syncDatabase = async () => {
   try {
     await db.sync();
     console.log('------Synced to db--------')
-    //  await seedDB();
-     //console.log('--------Successfully seeded db--------');
+    await seedDB();
+    console.log('--------Successfully seeded db--------');
   } catch (err) {
     console.error('syncDB error:', err);
   }  
